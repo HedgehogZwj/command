@@ -7,4 +7,68 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'command';
+  shouldShow = true;
+
+  score = 70;
+  color: string;
+  fontSize: string;
+  isBordered = true;
+
+  classObj = {
+    bordered: this.isBordered,
+    blue: false,
+    round: true
+  }
+
+  cities = ['杭州', '南京', '上海', '天津'];
+
+  people = [];
+
+  peopleByCity = [];
+
+  constructor() {
+    this.people = [
+      { name: 'jwj', age: 18, city: 'Hang zhou' },
+      { name: 'fph', age: 17, city: 'ke qiao' },
+      { name: 'zwj', age: 3, city: 'wen zhou' }
+    ];
+    this.peopleByCity = [
+      {
+        city: 'Miami',
+        people: [
+          { name: 'John', age: 12 },
+          { name: 'Angel', age: 22 }
+        ]
+      },
+      {
+        city: 'Sao Paulo',
+        people: [
+          { name: 'Anderson', age: 35 },
+          { name: 'Felipe', age: 36 }
+        ]
+      }
+    ];
+  }
+
+  onToggle() {
+    this.shouldShow = !this.shouldShow;
+    return false;
+  }
+
+  grade() {
+    return Math.floor(this.score / 10);
+  }
+  onInput(evt: Event) {
+    const inputEle = <HTMLInputElement>evt.target;
+    this.score = Number(inputEle.value);
+  }
+  apply(color: string, fontSize: string) {
+    this.color = color;
+    this.fontSize = fontSize;
+  }
+  toggleBorder() {
+    this.isBordered = !this.isBordered;
+    this.classObj.bordered = this.isBordered;
+    return true;
+  }
 }
